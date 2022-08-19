@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using SmsService.Data;
 using SmsService.Serivces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+var smsServiceConnectionString = builder.Configuration.GetConnectionString("SmsServiceConnectionString");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(smsServiceConnectionString));
+
 builder.Services.AddTransient<IService, SMSService>();
 
 var app = builder.Build();
