@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmsService.Data;
-using SmsService.Models.Providers;
+using SmsService.Data.Models.Providers;
 
 namespace SmsService.Helpers
 {
@@ -34,8 +34,8 @@ namespace SmsService.Helpers
             {
                 var orderedSmosProvidersIds = SmsProviders.OrderBy(p => p.Id).Select(p => p.Id);
 
-                if (orderedSmosProvidersIds != null) 
-                { 
+                if (orderedSmosProvidersIds != null)
+                {
                     var lastProviderId = orderedSmosProvidersIds.LastOrDefault();
                     var randomId = GetRandomId(lastProviderId);
 

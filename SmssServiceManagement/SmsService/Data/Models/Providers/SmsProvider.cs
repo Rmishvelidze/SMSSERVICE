@@ -1,4 +1,4 @@
-﻿namespace SmsService.Models.Providers
+﻿namespace SmsService.Data.Models.Providers
 {
     public class SmsProvider : ProviderBase
     {

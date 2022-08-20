@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SmsService.Data;
-using SmsService.Serivces;
+using SmsService.Midlewares;
+using SmsService.Serivces.Provider;
+using SmsService.Serivces.SMS;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,8 @@ builder.Services.AddSwaggerGen();
 var smsServiceConnectionString = builder.Configuration.GetConnectionString("SmsServiceConnectionString");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(smsServiceConnectionString));
 
-builder.Services.AddTransient<IService, SMSService>();
+builder.Services.AddScoped<ISMSService, SMSService>();
+builder.Services.AddScoped<ProviderService>();
 
 var app = builder.Build();
 
@@ -29,6 +32,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.ConfigureCustomExceptionHandler();
 
 app.MapControllers();
 

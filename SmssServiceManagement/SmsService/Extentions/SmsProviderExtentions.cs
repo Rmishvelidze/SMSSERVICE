@@ -1,4 +1,4 @@
-﻿using SmsService.Models.Providers;
+﻿using SmsService.Data.Models.Providers;
 
 namespace SmsService.Extentions
 {

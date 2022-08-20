@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmsService.Models.Providers;
+using SmsService.Data.Models.Providers;
 
 namespace SmsService.Data
 {
