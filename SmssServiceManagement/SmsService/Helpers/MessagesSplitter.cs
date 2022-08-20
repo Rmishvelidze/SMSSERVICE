@@ -21,8 +21,8 @@ namespace SmsService.Helpers
             if (IsEven(messagesQuantity))
                 list = messages.ChunkBy(messagesQuantity / 2);
 
-            if (IsOdd(messagesQuantity) && messagesQuantity == 1)
-                list = messages.ChunkBy(messagesQuantity / 3);
+            if (IsOdd(messagesQuantity) && messagesQuantity != 1)
+                list = messages.ChunkBy(messagesQuantity / 2);
 
             return list;
         }

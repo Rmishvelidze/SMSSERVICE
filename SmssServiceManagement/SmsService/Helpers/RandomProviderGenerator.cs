@@ -32,14 +32,19 @@ namespace SmsService.Helpers
         {
             if (SmsProviders != null)
             {
-                var lastProviderId = SmsProviders.Last().Id;
-                var randomId = GetRandomId(lastProviderId);
+                var orderedSmosProvidersIds = SmsProviders.OrderBy(p => p.Id).Select(p => p.Id);
 
-                while (SmsProviders.Any(p => p.Id != randomId))
-                {
-                    randomId = GetRandomId(lastProviderId);
+                if (orderedSmosProvidersIds != null) 
+                { 
+                    var lastProviderId = orderedSmosProvidersIds.LastOrDefault();
+                    var randomId = GetRandomId(lastProviderId);
+
+                    while (!orderedSmosProvidersIds.Contains(randomId))
+                    {
+                        randomId = GetRandomId(lastProviderId);
+                    }
+                    return randomId;
                 }
-                return randomId;
             }
             return default;
         }
@@ -47,7 +52,7 @@ namespace SmsService.Helpers
         static int GetRandomId(int lastProviderId)
         {
             var random = new Random();
-            return random.Next(1, lastProviderId);
+            return random.Next(1, lastProviderId + 1);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IService
     {
-        void SendMessageWithRandomProviderSelector(List<string> messages);
-        void SendMessageWithPercentProviderSelector(List<string> messages);
+        string SendMessageWithRandomProviderSelector(List<string> messages);
+        List<string> SendMessageWithPercentProviderSelector(List<string> messages);
     }
 }
